@@ -221,14 +221,40 @@ a.nav-link {
 .sorting:hover {
     background-color: orange;
 }
-td {
-    display: flex;
-    justify-content: start;
+
+.profile {
+    width: 18rem;
+    height: 18rem;
+    border: 5px orange solid;
+    border-radius: 50%;
+    margin-top: 30px;
+    
+}
+
+.com-text {
+    text-align: center;
 
 }
+
+.contact-btn {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+::placeholder {
+    color: rgb(0, 0, 0);
+}
+input, textarea {
+    caret-color: orange;
+}
+
+.offcanvas-body {
+    margin-top: 20px;
+}
+
 .footer {
   text-align: center;
   display: flex;
   justify-content: center;
-  margin-top: 30vh;
 }
