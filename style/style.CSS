@@ -4,6 +4,9 @@ body {
   font-family: "Cairo", sans-serif;
   font-family: "Roboto Mono", monospace;
 }
+.section-landing {
+    height: 100vh;
+}
 
 .logo {
   border: orange 4px solid;
@@ -59,8 +62,21 @@ a.nav-link {
   width: 30px;
   height: 30px;
   margin-top: 10rem;
+  margin-bottom: 5rem;
   animation: blinker 0.8s linear infinite;
   color: white;
+}
+.blink2 {
+    color: white;
+    background-color: orange;
+    border: white;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-top: 1rem;
+    animation: blinker 0.8s linear infinite;
+    color: white;
+
 }
 @keyframes blinker {
   50% {
@@ -69,7 +85,7 @@ a.nav-link {
 }
 
 .title-1 {
-  margin: 80px;
+    margin: 30px;
   text-align: center;
 }
 
@@ -89,11 +105,11 @@ a.nav-link {
 }
 
 @media only screen and (max-width: 580px) {
-  .blink {
-    margin-top: 14rem;
-  }
+    .blink {
+        margin-bottom: 100px;
+    }
   .title-1 {
-    margin-top: 80px;
+    margin-top: 60px;
   }
   .checkout-btn {
     margin-left: 30px;
@@ -107,7 +123,6 @@ a.nav-link {
 
 @media only screen and (max-width: 768px) {
   .container-check {
-    margin-top: 20px;
     justify-content: center !important;
   }
 }
@@ -155,12 +170,62 @@ a.nav-link {
 .buy-items:hover {
   background-color: orange;
 }
+.title1 {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    text-decoration: underline orange ;
 
-.details {
-    display: flex;
-    justify-content: space-evenly;
+}
+.admin-title2 {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    text-decoration: underline orange ;
+}
+.btn-group {
+    display: grid;
+    justify-content: end;
+    padding: 5px;
+    margin: 5px;
 }
 
+.adding {
+    padding: 10px;
+    width: 5rem;
+    margin: 10px;
+    border: 2px black solid;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px;
+
+}
+.sorting {
+    padding: 10px;
+    width: 5rem;
+    margin: 10px;
+    border: 2px black solid;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px;
+
+}
+.display-show {
+    margin: 10px;
+    padding: 10px;
+}
+.adding:hover {
+    background-color: orange;
+}
+
+.sorting:hover {
+    background-color: orange;
+}
+td {
+    display: flex;
+    justify-content: start;
+
+}
 .footer {
   text-align: center;
   display: flex;
