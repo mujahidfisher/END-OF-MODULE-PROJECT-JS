@@ -264,6 +264,18 @@ input, textarea {
   border-radius: 10px;
 }
 
+.deleter {
+  border-radius: 8px;
+  height: 38px;
+  margin: 5px;
+  background-color: orange;
+}
+
+.deleter:hover {
+  background-color: red;
+  color: white;
+}
+
 .footer {
   text-align: center;
   display: flex;
