@@ -21,9 +21,8 @@ function outputData() {
       <td>${item.specs}</td>
       <td><img src="${item.img}" alt="product" class= "prodpic" loading="lazy"></td>
       <td>R${item.price}</td>
-      <td><button id= "editBtn"onclick='editItem'>EDIT</button><button id= "remove-items" onclick='deleteItem(${JSON.stringify(item)})'>DELETE</button></td>
+      <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="edit">Edit</button><button class="deleter" id= "remove-items" onclick='deleteItem(${JSON.stringify(item)})'>DELETE</button></td>
       </tr>`;
-    //   console.log(item);
     });
 }
 
@@ -62,37 +61,40 @@ function addItem() {
   specs = document.querySelector("#specs").value = "";
   img = document.querySelector("#img").value = "";
   price = document.querySelector("#price").value = "";
-
   
 }
 
-// delete button getting new array 
+
+
+// editing function 
+
+// delete function 
 function deleteItem(item){
-    let data = JSON.parse(localStorage.getItem('key'))
-    let x = data.findIndex((y) => {
-        return y.id === item.id
+  let data = JSON.parse(localStorage.getItem('key'))
+  let x = data.findIndex((y) => {
+      return y.id === item.id
+  })
+
+  data.splice(x, 1)
+  localStorage.setItem("key", JSON.stringify(data))
+  outputData()
+}
+
+// adding data to the modal
+function EditItem(item){
+    this.id = item.id
+    this.product = document.querySelector(`${item.product}`).value;
+    this.spec = document.querySelector("#new-spec").value;
+    this.img = document.querySelector('#new-img').value;
+    this.price = document.querySelector('#new-price').value;
+
+    let itemIndex = data.findIndex((data)=>{
+        return data.id === item.id
     })
-    data.splice(x, 1)
-    localStorage.setItem("key", JSON.stringify(data))
+    data[itemIndex] = {id: this.id, product: this.product, specs: this.specs, img: this.img, price: this.price};
     outputData()
+    location.reload()
 }
-
-// edit function constructor .this
-class editItem {
-    constructor(item) {
-        this.id = document.querySelector("#id").value;
-        this.product = document.querySelector("#product").value;
-        this.specs = document.querySelector("#specs").value;
-        this.img = document.querySelector("#img").value;
-        this.price = document.querySelector("#price").value;
-    }
-}
-
-
-
-
-
-
 
 // sorting outputs out by first letter of the product name
 // let sortItem = document.querySelector("#sort");
