@@ -21,7 +21,38 @@ function outputData() {
       <td>${item.specs}</td>
       <td><img src="${item.img}" alt="product" class= "prodpic" loading="lazy"></td>
       <td>R${item.price}</td>
-      <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="edit">Edit</button><button class="deleter" id= "remove-items" onclick='deleteItem(${JSON.stringify(item)})'>DELETE</button></td>
+      <td>
+
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="edit">Edit</button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Product</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="modal-body">
+              <input type="number" value = "${item.id}" placeholder="Enter ID" id="id"/>
+              <input type="text" value = "${item.product}" placeholder="Enter Product Name" id="product"/>
+              <input type="text" value = "${item.specs}" placeholder="Enter Specs" id="specs"/>
+              <input type="text" value = "${item.img}" placeholder="Enter img-url" id="img" />
+              <input type="number" value = "${item.price}" placeholder="Enter Price" id="price" />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" onclick= "edited EditItem(${JSON.stringify(item)})">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+
+      <button class="deleter" id= "remove-items" onclick='deleteItem(${JSON.stringify(item)})'>DELETE</button></td>
       </tr>`;
     });
 }
@@ -67,7 +98,7 @@ function addItem() {
 
 
 // editing function 
-
+let data = JSON.parse(localStorage.getItem('key'))
 // delete function 
 function deleteItem(item){
   let data = JSON.parse(localStorage.getItem('key'))
@@ -80,27 +111,36 @@ function deleteItem(item){
   outputData()
 }
 
-// adding data to the modal
+// Edit function
 function EditItem(item){
-    this.id = item.id
-    this.product = document.querySelector(`${item.product}`).value;
-    this.spec = document.querySelector("#new-spec").value;
-    this.img = document.querySelector('#new-img').value;
-    this.price = document.querySelector('#new-price').value;
-
-    let itemIndex = data.findIndex((data)=>{
+    this.Id = item.id
+    this.product = document.querySelector("#product").value;
+    this.spec = document.querySelector("#spec").value;
+    this.img = document.querySelector("#img").value;
+    this.price = document.querySelector("#price").value;
+    
+    let itemIndex = key.findIndex((data)=>{
         return data.id === item.id
     })
-    data[itemIndex] = {id: this.id, product: this.product, specs: this.specs, img: this.img, price: this.price};
+    
+    data[itemIndex] = {
+        id: this.id, 
+        product: this.product, 
+        specs: this.specs, 
+        img: this.img, 
+        price: this.price
+    };
+    localStorage.setItem("key", JSON.stringify(data))
     outputData()
-    location.reload()
+    location.reload
 }
 
-// sorting outputs out by first letter of the product name
-// let sortItem = document.querySelector("#sort");
-// sortItem.addEventListener("click", (e)=> {
-//     e.preventDefault()
-//     item.sort(function(a, b){return a - b})
-// })
+// sorting by price
+let sortItem = document.querySelector("#sort");
+sortItem.addEventListener("click", (e)=> {
+    data.sort((a, b) => 
+    a.price - b.price)
+    outputData()
+})
 
 
