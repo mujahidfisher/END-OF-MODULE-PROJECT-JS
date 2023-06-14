@@ -127,8 +127,26 @@ a.nav-link {
   }
 }
 
-.section-products {
-  height: 100vh;
+.list-group {
+  text-align: center;
+  margin: 10px;
+}
+
+.gap-3 {
+  padding: 30px;
+}
+
+.buy {
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.buy:hover {
+  background-color: orange;
+  color: white;
 }
 
 .check-head {
