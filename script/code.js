@@ -41,7 +41,6 @@ JSON.parse(localStorage.getItem("key")) :
 ))
 
 let itemCard = document.querySelector("#itemCard")
-let checkoutBox = []
 
 itemCard.innerHTML = ""
 
@@ -59,13 +58,8 @@ key.forEach((item) => {
     `
 });
 
+let checkoutBox = []
 function checkoutItems(item){
-  try {
     checkoutBox.push(item)
     localStorage.setItem("checkout", JSON.stringify(checkoutBox))
-    
-  } catch (x) {
-    console.log(x);
-    
-  }
 }

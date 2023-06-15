@@ -1,78 +1,48 @@
-let displayBody = document.querySelector("#display-items")
-let checkoutBox = JSON.parse(localStorage.getItem("checkout")) ? JSON.parse(localStorage.getItem("checkout")) : []
-let checkout;
+let checkoutBox = JSON.parse(localStorage.getItem("checkout"))
+  ? JSON.parse(localStorage.getItem("checkout"))
+  : [];
+let displayBody = document.querySelector("#display-items");
+let removeItem = document.querySelector("#clear");
+let totalDisplay = document.querySelector("#totPrice")
+let numb3 = document.querySelector("#pricing")
 
-// JSON.stringify(localStorage.getItem("checkout"))
+let totalPrice = 0
 
-    displayBody.innerHTML += 
-    `
+checkoutBox.forEach((item)=>{
+    totalPrice += parseFloat(item.price.split(' ').reduce((accum, curren)=>
+    accum + curren.price))
+})
+console.log(totalPrice);
+
+
+checkoutBox.forEach((item) => {
+  displayBody.innerHTML += `
     <tr>
-    <td>${checkout}</td>
-    <td>${checkout}</td>   
-    <td>${checkout}</td>
-    <td>R ${checkout}</td>
-    <td><button>remove</button></td>
+    <td>${item.product}</td>
+    <td>${item.specs}</td>  
+    <td>${item}</td>
+    <td>R${item.price}</td>
     </tr>
-    `
+    `;
+});
+
+totalDisplay.innerHTML += `
+<tr>
+  <td></td>
+  <td></td>  
+  <td>Total Price:</td>
+  <td>R${totalPrice}.00</td>
+  </tr>
+`
+numb3.innerHTML += `
+<p>R ${totalPrice}.00</p>
+`
 
 
+removeItem.addEventListener("click", () => {
+  localStorage.removeItem("checkout");
+  location.reload();
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function displayCheckout() {
-//     try{
-//         if(!checkoutBox.length);
-//         let total = 0;
-//         for(let idx in groupBy){
-//             let totalPrice = groupBy[idx].length * groupBy[idx][0].amount;  
-//             total += totalPrice;
-//             displayBody.innerHTML += `
-//             <tr>
-//             <td>${groupBy[idx][0].product}</td>
-//             <td>${groupBy[idx][0].specs}</td>
-//             <td>${groupBy[idx][0].length}</td>
-//             <td>R ${totalPrice}</td>
-//             <button>remove</button>
-//             <td>
-//             `  
-//         }
-//         displayBody.innerHTML += `
-//                   <div class="cal-items">
-//                   <h6>
-//                       R${total}
-//                   </h6>
-//                   <h4 class="tot">
-//                     Total Price:
-//                   </h4>
-//                   <p>price</p>
-//         `
-//     }catch(y){
-//         console.log(y);
-//     }
-// }
 
 

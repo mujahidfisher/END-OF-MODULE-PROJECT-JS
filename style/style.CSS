@@ -3,6 +3,7 @@
 body {
   font-family: "Cairo", sans-serif;
   font-family: "Roboto Mono", monospace;
+  overflow-x: hidden;
 }
 .section-landing {
     height: 100vh;
@@ -189,6 +190,20 @@ a.nav-link {
   background-color: white;
   display: flex;
   justify-content: center;
+}
+
+.clear-btn {
+  width: 7rem;
+  border-radius: 10px;
+  color: black;
+  background-color: white;
+  border: orange 3px solid;
+  margin: 20px;
+}
+
+.clear-btn:hover {
+  background-color: red;
+  color: white;
 }
 
 .buy-items:hover {
