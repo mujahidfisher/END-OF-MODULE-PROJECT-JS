@@ -45,7 +45,7 @@ function outputData() {
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" onclick= "edited EditItem(${JSON.stringify(item)})">Save</button>
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" onclick= "EditItem()">Save</button>
           </div>
         </div>
       </div>
@@ -114,6 +114,7 @@ function deleteItem(item){
 // Edit function
 function EditItem(item){
     this.Id = item.id
+    console.log(item.id);
     this.product = document.querySelector("#product").value;
     this.spec = document.querySelector("#spec").value;
     this.img = document.querySelector("#img").value;

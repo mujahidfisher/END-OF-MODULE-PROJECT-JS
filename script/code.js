@@ -54,7 +54,18 @@ key.forEach((item) => {
     <li class="list-group-item">${item.specs}</li>
     <li class="list-group-item">R ${item.price}</li>
   </ul>
-  <button class= "buy">buy</button>
+  <button class= "buy" onclick= 'checkoutItems(${JSON.stringify(item)})'>buy</button>
 </div>
     `
 });
+
+function checkoutItems(item){
+  try {
+    checkoutBox.push(item)
+    localStorage.setItem("checkout", JSON.stringify(checkoutBox))
+    
+  } catch (x) {
+    console.log(x);
+    
+  }
+}
