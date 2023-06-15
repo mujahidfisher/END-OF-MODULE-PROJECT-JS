@@ -1,4 +1,4 @@
-let key;
+let key = JSON.parse(localStorage.getItem('key'));
 // get empty array.
 function outputData() {
     let key;
@@ -38,14 +38,14 @@ function outputData() {
               <input type="number" value = "${item.id}" placeholder="Enter ID" id="id${item.id}"/>
               <input type="text" value = "${item.product}" placeholder="Enter Product Name" id="product${item.id}"/>
               <input type="text" value = "${item.specs}" placeholder="Enter Specs" id="specs${item.id}"/>
-              <input type="text" value = "${item.img}" placeholder="Enter img-url" id="img" />
+              <input type="text" value = "${item.img}" placeholder="Enter img-url" id="img${item.id}" />
               <input type="number" value = "${item.price}" placeholder="Enter Price" id="price${item.id}" />
             </div>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" onclick='EditItem(${JSON.stringify({item})})'>Save</button>
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" onclick='new editItem(${JSON.stringify(item)})'>Save</button>
           </div>
         </div>
       </div>
@@ -111,20 +111,21 @@ function deleteItem(item){
 }
 
 // Edit function
-function EditItem(item){
-  console.log(item);
-    this.Id = item.id
+let editItem = function(item){
+
+    this.id = document.querySelector(`#id${item.id}`).value
     this.product = document.querySelector(`#product${item.id}`).value;
-    this.spec = document.querySelector(`#spec${item.id}`).value;
+    this.specs = document.querySelector(`#specs${item.id}`).value;
     this.img = document.querySelector(`#img${item.id}`).value;
     this.price = document.querySelector(`#price${item.id}`).value;
     
     let itemIndex = key.findIndex((data)=>{
         return data.id === item.id
     })
-    data[itemIndex] = Object.assign({}, this)
-    localStorage.setItem("key", JSON.stringify(data))
-    outputData()
+    console.log(data[itemIndex])
+    key[itemIndex] = Object.assign({}, this)
+    console.log(this)
+    localStorage.setItem("key", JSON.stringify(key))
     location.reload()
 }
 

@@ -38,6 +38,7 @@ numb3.innerHTML += `
 <p>R ${totalPrice}.00</p>
 `
 
+// remove cart
 
 removeItem.addEventListener("click", () => {
   localStorage.removeItem("checkout");
