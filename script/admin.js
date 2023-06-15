@@ -23,9 +23,9 @@ function outputData() {
       <td>R${item.price}</td>
       <td>
 
-      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="edit">Edit</button>
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-${item.id}" data-bs-whatever="edit" >Edit </button>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal-${item.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -35,24 +35,24 @@ function outputData() {
 
           <div class="modal-body">
             <div class="modal-body">
-              <input type="number" value = "${item.id}" placeholder="Enter ID" id="id"/>
-              <input type="text" value = "${item.product}" placeholder="Enter Product Name" id="product"/>
-              <input type="text" value = "${item.specs}" placeholder="Enter Specs" id="specs"/>
+              <input type="number" value = "${item.id}" placeholder="Enter ID" id="id${item.id}"/>
+              <input type="text" value = "${item.product}" placeholder="Enter Product Name" id="product${item.id}"/>
+              <input type="text" value = "${item.specs}" placeholder="Enter Specs" id="specs${item.id}"/>
               <input type="text" value = "${item.img}" placeholder="Enter img-url" id="img" />
-              <input type="number" value = "${item.price}" placeholder="Enter Price" id="price" />
+              <input type="number" value = "${item.price}" placeholder="Enter Price" id="price${item.id}" />
             </div>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" onclick= "EditItem()">Save</button>
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" onclick='EditItem(${JSON.stringify({item})})'>Save</button>
           </div>
         </div>
       </div>
     </div>
       
 
-      <button class="deleter" id= "remove-items" onclick='deleteItem(${JSON.stringify(item)})'>DELETE</button></td>
+      <button class="deleter" id= "remove-items" onclick='deleteItem(${JSON.stringify({item})})'>DELETE</button></td>
       </tr>`;
     });
 }
@@ -97,7 +97,6 @@ function addItem() {
 
 
 
-// editing function 
 let data = JSON.parse(localStorage.getItem('key'))
 // delete function 
 function deleteItem(item){
@@ -113,27 +112,20 @@ function deleteItem(item){
 
 // Edit function
 function EditItem(item){
+  console.log(item);
     this.Id = item.id
-    console.log(item.id);
-    this.product = document.querySelector("#product").value;
-    this.spec = document.querySelector("#spec").value;
-    this.img = document.querySelector("#img").value;
-    this.price = document.querySelector("#price").value;
+    this.product = document.querySelector(`#product${item.id}`).value;
+    this.spec = document.querySelector(`#spec${item.id}`).value;
+    this.img = document.querySelector(`#img${item.id}`).value;
+    this.price = document.querySelector(`#price${item.id}`).value;
     
     let itemIndex = key.findIndex((data)=>{
         return data.id === item.id
     })
-    
-    data[itemIndex] = {
-        id: this.id, 
-        product: this.product, 
-        specs: this.specs, 
-        img: this.img, 
-        price: this.price
-    };
+    data[itemIndex] = Object.assign({}, this)
     localStorage.setItem("key", JSON.stringify(data))
     outputData()
-    location.reload
+    location.reload()
 }
 
 // sorting by price
