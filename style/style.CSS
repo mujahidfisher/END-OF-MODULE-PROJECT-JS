@@ -136,6 +136,12 @@ a.nav-link {
   padding: 30px;
 }
 
+.checkhead {
+  padding: 10px;
+  text-decoration: underline orange;
+  text-align: center;
+}
+
 .buy {
   border-radius: 10px;
   border: none;
