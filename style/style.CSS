@@ -295,12 +295,16 @@ input, textarea {
 
 .prodpic {
   width: 100px;
-  height: 100px;
+  height: 120px;
   border-radius: 20px;
 }
 
 .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:nth-child(n+3), .btn-group>:not(.btn-check)+.btn {
   border-radius: 10px;
+}
+
+.card-img, .card-img-top {
+  height: 17rem;
 }
 
 .deleter {
